@@ -1,0 +1,99 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/wheel/wheel_bloc.dart';
+import '../../blocs/wheel/events.dart';
+import '../../blocs/wheel/states.dart';
+
+// ========================================
+// WHEEL CONTROLS WIDGET
+// ========================================
+// Widget containing wheel control buttons
+class WheelControls extends StatelessWidget {
+  final String spinButtonText;
+  final TextStyle spinButtonTextStyle;
+  final Color spinButtonColor;
+  final Widget spinButtonIcon;
+  final Widget? customSpinButton;
+  final Widget? customPointer;
+
+  const WheelControls({
+    super.key,
+    required this.spinButtonText,
+    required this.spinButtonTextStyle,
+    required this.spinButtonColor,
+    required this.spinButtonIcon,
+    this.customSpinButton,
+    this.customPointer,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<WheelBloc, WheelState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is WheelLoaded) {
+          return _buildControls(context, state);
+        }
+        return const SizedBox.shrink();
+      },
+    );
+  }
+
+  Widget _buildControls(BuildContext context, WheelLoaded state) {
+    return _buildSpinButton(context, state);
+  }
+
+  Widget _buildSpinButton(BuildContext context, WheelLoaded state) {
+    final isDisabled = state.isSpinning || state.isAnimating;
+    if (customSpinButton != null) {
+      return InkWell(
+        onTap: isDisabled ? null : () => _handleSpinPress(context),
+        child: customSpinButton!,
+      );
+    }
+    return SizedBox(
+      width: 140,
+      height: 40,
+      child: ElevatedButton(
+        onPressed: isDisabled ? null : () => _handleSpinPress(context),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: spinButtonColor,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+          minimumSize: const Size(120, 40),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (isDisabled)
+              const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            else
+              spinButtonIcon,
+            const SizedBox(width: 6),
+            Text(
+              isDisabled ? '...' : spinButtonText,
+              style: spinButtonTextStyle,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _handleSpinPress(BuildContext context) async {
+    context.read<WheelBloc>().add(SpinWheel());
+  }
+}

@@ -1,0 +1,115 @@
+# ========================================
+# CODEOWNERS - CODE OWNERS
+# ========================================
+# This file specifies which developers manage project files.
+# GitHub automatically uses this file.
+# ========================================
+
+# ========================================
+# GLOBAL OWNERS - General Owners
+# ========================================
+# Main developer for all project files
+* @Tahaylmz
+
+# ========================================
+# SPECIFIC FILE OWNERS - Specific File Owners
+# ========================================
+
+# ========================================
+# FLUTTER CORE FILES - Flutter Core Files
+# ========================================
+# Main application files
+lib/main.dart @Tahaylmz
+lib/presentation/pages/ @Tahaylmz
+
+# ========================================
+# PRESENTATION LAYER - Presentation Layer
+# ========================================
+# Widgets and UI components
+lib/presentation/widgets/ @Tahaylmz
+lib/presentation/blocs/ @Tahaylmz
+
+# ========================================
+# DOMAIN LAYER - Domain Layer
+# ========================================
+# Business logic and entities
+lib/domain/ @Tahaylmz
+
+# ========================================
+# DATA LAYER - Data Layer
+# ========================================
+# Repositories and data sources
+lib/data/ @Tahaylmz
+
+# ========================================
+# CORE LAYER - Core Layer
+# ========================================
+# Helper classes and utilities
+lib/core/ @Tahaylmz
+
+# ========================================
+# CONFIGURATION FILES - Configuration Files
+# ========================================
+# Project configuration files
+pubspec.yaml @Tahaylmz
+pubspec.lock @Tahaylmz
+analysis_options.yaml @Tahaylmz
+README.md @Tahaylmz
+
+# ========================================
+# DOCUMENTATION - Documentation
+# ========================================
+# Project documentation
+docs/ @Tahaylmz
+*.md @Tahaylmz
+
+# ========================================
+# TESTS - Tests
+# ========================================
+# All test files
+test/ @Tahaylmz
+**/*_test.dart @Tahaylmz
+
+# ========================================
+# ASSETS - Assets
+# ========================================
+# Images, fonts and other assets
+assets/ @Tahaylmz
+**/*.png @Tahaylmz
+**/*.jpg @Tahaylmz
+**/*.jpeg @Tahaylmz
+**/*.svg @Tahaylmz
+**/*.ttf @Tahaylmz
+**/*.otf @Tahaylmz
+
+# ========================================
+# BUILD FILES - Build Files
+# ========================================
+# Automatically generated files
+**/*.g.dart @Tahaylmz
+**/*.freezed.dart @Tahaylmz
+build/ @Tahaylmz
+.dart_tool/ @Tahaylmz
+
+# ========================================
+# GIT FILES - Git Files
+# ========================================
+# Git configuration files
+.gitignore @Tahaylmz
+.gitattributes @Tahaylmz
+
+# ========================================
+# IDE FILES - IDE Files
+# ========================================
+# IDE configuration files
+.vscode/ @Tahaylmz
+.idea/ @Tahaylmz
+*.code-workspace @Tahaylmz
+
+# ========================================
+# CI/CD FILES - Continuous Integration Files
+# ========================================
+# CI/CD configuration files
+.github/ @Tahaylmz
+.gitlab-ci.yml @Tahaylmz
+azure-pipelines.yml @Tahaylmz 

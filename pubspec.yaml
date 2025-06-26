@@ -1,0 +1,99 @@
+name: gamification_wheel
+# ========================================
+# PROJECT DESCRIPTION
+# ========================================
+description: A fully customizable gamification wheel Flutter widget with Clean Architecture and BLoC pattern. Perfect for games, decision-making, and interactive applications.
+version: 0.1.0
+homepage: https://github.com/Tahaylmz/gamification-wheel
+repository: https://github.com/Tahaylmz/gamification-wheel
+issue_tracker: https://github.com/Tahaylmz/gamification-wheel/issues
+documentation: https://github.com/Tahaylmz/gamification-wheel#readme
+
+# ========================================
+# ENVIRONMENT AND SDK VERSION
+# ========================================
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+# ========================================
+# MAIN DEPENDENCIES
+# ========================================
+dependencies:
+  # Flutter SDK
+  flutter:
+    sdk: flutter
+
+  # =====================
+  # UI & Animation Packages
+  # =====================
+  flutter_spinkit: ^5.2.1   # Loading animations
+  vector_math: ^2.1.4       # Vector math operations
+
+  # =====================
+  # State Management & BLoC
+  # =====================
+  flutter_bloc: ^8.1.6      # BLoC state management
+  bloc: ^8.1.4              # BLoC core
+  equatable: ^2.0.5         # State comparison
+
+  # =====================
+  # Dependency Injection
+  # =====================
+  get_it: ^7.7.0            # Service locator
+
+  # =====================
+  # HTTP & Networking
+  # =====================
+  dio: ^5.4.0               # HTTP client
+
+  # =====================
+  # Utility & Functional
+  # =====================
+  dartz: ^0.10.1            # Functional programming utils
+
+  # =====================
+  # Code Generation & Serialization
+  # =====================
+  json_annotation: ^4.9.0   # JSON serialization
+  freezed_annotation: ^2.4.1 # Freezed data classes
+
+# ========================================
+# DEVELOPER DEPENDENCIES
+# ========================================
+dev_dependencies:
+  # Lint and Test
+  flutter_lints: ^3.0.2     # Code quality and linter
+  flutter_test:
+    sdk: flutter            # Flutter test framework
+
+  # =====================
+  # Code Generation & Build Runner
+  # =====================
+  build_runner: ^2.4.7      # For code generation
+  json_serializable: ^6.9.0 # For JSON serialization
+  freezed: ^2.4.6           # Freezed code generation
+
+# ========================================
+# FLUTTER SPECIFIC SETTINGS
+# ========================================
+flutter:
+  uses-material-design: true
+  
+  # =====================
+  # ASSETS
+  # =====================
+  assets:
+    - assets/gifs/
+  
+  # =====================
+  # FONTS
+  # =====================
+  # fonts:
+  #   - family: CustomFont
+  #     fonts:
+  #       - asset: assets/fonts/CustomFont-Regular.ttf
+  #       - asset: assets/fonts/CustomFont-Bold.ttf
+  #         weight: 700
+  # Main widget of the package
+  # These files will be included in the package
