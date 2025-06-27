@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/wheel/wheel_bloc.dart';
-import '../../blocs/wheel/events.dart';
-import '../../blocs/wheel/states.dart';
 
 // ========================================
 // WHEEL CONTROLS WIDGET
@@ -15,6 +11,8 @@ class WheelControls extends StatelessWidget {
   final Widget spinButtonIcon;
   final Widget? customSpinButton;
   final Widget? customPointer;
+  final VoidCallback? onSpinPressed;
+  final bool isSpinning;
 
   const WheelControls({
     super.key,
@@ -24,27 +22,21 @@ class WheelControls extends StatelessWidget {
     required this.spinButtonIcon,
     this.customSpinButton,
     this.customPointer,
+    this.onSpinPressed,
+    this.isSpinning = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<WheelBloc, WheelState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        if (state is WheelLoaded) {
-          return _buildControls(context, state);
-        }
-        return const SizedBox.shrink();
-      },
-    );
+    return _buildControls(context);
   }
 
-  Widget _buildControls(BuildContext context, WheelLoaded state) {
-    return _buildSpinButton(context, state);
+  Widget _buildControls(BuildContext context) {
+    return _buildSpinButton(context);
   }
 
-  Widget _buildSpinButton(BuildContext context, WheelLoaded state) {
-    final isDisabled = state.isSpinning || state.isAnimating;
+  Widget _buildSpinButton(BuildContext context) {
+    final isDisabled = isSpinning;
     if (customSpinButton != null) {
       return InkWell(
         onTap: isDisabled ? null : () => _handleSpinPress(context),
@@ -94,6 +86,8 @@ class WheelControls extends StatelessWidget {
   }
 
   void _handleSpinPress(BuildContext context) async {
-    context.read<WheelBloc>().add(SpinWheel());
+    if (onSpinPressed != null) {
+      onSpinPressed!();
+    }
   }
 }

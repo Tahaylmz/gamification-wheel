@@ -12,10 +12,7 @@ export 'wheel_display.dart';
 export 'wheel_controls.dart';
 export 'wheel_animation_controller.dart';
 
-// BLoCs - We resolve conflicting names with hide
-export '../../blocs/wheel/wheel_bloc.dart';
-export '../../blocs/wheel/events.dart';
-export '../../blocs/wheel/states.dart';
+// BLoCs - Only export WheelWidgetBloc since WheelWidget is self-contained
 export '../../blocs/wheel_widget/wheel_widget_bloc.dart';
 export '../../blocs/wheel_widget/events.dart';
 export '../../blocs/wheel_widget/states.dart';

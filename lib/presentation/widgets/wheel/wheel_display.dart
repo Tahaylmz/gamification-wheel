@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/entities/wheel/wheel_segment.dart';
 import '../../blocs/wheel_display/wheel_display_bloc.dart';
 import '../../blocs/wheel_display/states.dart';
-import '../../blocs/wheel/events.dart';
-import '../../blocs/wheel/wheel_bloc.dart';
 import 'wheel_painter.dart';
 import '../../../core/constants/color_constants.dart';
 import '../../../utils/color_utils.dart';
@@ -39,6 +37,7 @@ class WheelDisplay extends StatelessWidget {
   final double initialAngle;
   final double segmentGap;
   final Widget? centerWidget;
+  final VoidCallback? onWheelTap;
 
   const WheelDisplay({
     super.key,
@@ -66,6 +65,7 @@ class WheelDisplay extends StatelessWidget {
     required this.initialAngle,
     required this.segmentGap,
     this.centerWidget,
+    this.onWheelTap,
   });
 
   // ========================================
@@ -140,8 +140,10 @@ class WheelDisplay extends StatelessWidget {
   // WHEEL TAP HANDLER
   // ========================================
   void _handleWheelTap(BuildContext context) {
-    // Send spin event only to the main WheelBloc
-    context.read<WheelBloc>().add(SpinWheel());
+    // Call the provided callback if available
+    if (onWheelTap != null) {
+      onWheelTap!();
+    }
   }
 
   // ========================================

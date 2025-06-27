@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamification_wheel/gamification_wheel.dart';
-import 'mock_wheel_repository.dart';
-import 'mock_spin_wheel_usecase.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,24 +10,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mock repository ve usecase oluştur
-    final repository = MockWheelRepository();
-    final usecase = MockSpinWheelUseCase(repository);
     return MaterialApp(
       title: 'Gamification Wheel Example',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Builder(
-        builder: (context) => BlocProvider(
-          create: (_) => WheelBloc(
-            spinWheelUseCase: usecase,
-            wheelRepository: repository,
-          ),
-          child: const WheelExamplePage(),
-        ),
-      ),
+      home: const WheelExamplePage(),
     );
   }
 }
@@ -144,7 +130,7 @@ class _WheelExamplePageState extends State<WheelExamplePage> {
               child: Center(
                 child: GWheel(
                   segments: segments,
-                  wheelSize: 300,
+                  wheelSize: 250,
                   animationSpeed: 2.0,
                   showPointer: true,
                   showCenterDot: true,

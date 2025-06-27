@@ -2,9 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/wheel/wheel_bloc.dart';
-import '../../blocs/wheel/events.dart';
-import '../../blocs/wheel/states.dart';
 import '../../blocs/wheel_widget/wheel_widget_bloc.dart';
 import '../../blocs/wheel_widget/events.dart' as widget_events;
 import 'wheel_animation_controller.dart';
@@ -301,17 +298,37 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
     if (status == AnimationStatus.completed) {
       Future.delayed(const Duration(milliseconds: 100), () {
         if (mounted) {
-          context.read<WheelBloc>().add(CompleteWheelSpin());
+          _handleSpinCompletion();
         }
       });
     }
   }
 
+  void _handleSpinCompletion() {
+    final finalAngle = _wheelController.animation.value;
+    final selectedSegment = _getSelectedSegment(finalAngle);
+
+    if (selectedSegment != null && widget.onFinish != null) {
+      widget.onFinish!(selectedSegment);
+    }
+  }
+
+  WheelSegment? _getSelectedSegment(double angle) {
+    if (widget.segments.isEmpty) return null;
+
+    final segmentAngle = 2 * pi / widget.segments.length;
+    final normalizedAngle = (angle + widget.initialAngle) % (2 * pi);
+    final segmentIndex = (normalizedAngle / segmentAngle).floor();
+
+    if (segmentIndex >= 0 && segmentIndex < widget.segments.length) {
+      return widget.segments[segmentIndex];
+    }
+    return widget.segments.first;
+  }
+
   void _initializeWheelState() {
-    final bloc = context.read<WheelBloc>();
-    bloc.add(UpdateWheelSegments(widget.segments));
-    bloc.add(UpdateWheelSize(widget.wheelSize));
-    bloc.add(UpdateAnimationSpeed(widget.animationSpeed));
+    // Remove direct WheelBloc dependency
+    // The wheel will work with the provided segments directly
   }
 
   // ========================================
@@ -319,112 +336,34 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
   // ========================================
   @override
   Widget build(BuildContext context) {
-    return BlocListener<WheelBloc, WheelState>(
-      listener: (context, state) {
-        _handleBlocStateChanges(context, state);
-      },
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          BlocBuilder<WheelBloc, WheelState>(
-            builder: _buildWheelContent,
-          ),
-          // Separate widget for dialog management
-          // const WheelWidgetDialog(),
-        ],
-      ),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        _buildWheelContent(),
+        // Separate widget for dialog management
+        // const WheelWidgetDialog(),
+      ],
     );
-  }
-
-  // ========================================
-  // BLOC STATE HANDLING
-  // ========================================
-  void _handleBlocStateChanges(BuildContext context, WheelState state) {
-    if (state is WheelLoaded) {
-      // Print result to console if available
-      if (state.lastResult != null) {
-        // ignore: avoid_print
-        print('Wheel result: \n${state.lastResult}');
-        if (widget.onFinish != null) {
-          widget.onFinish!(state.lastResult!);
-        }
-      }
-      // ========================================
-      // ANIMATION SPEED UPDATE HANDLING
-      // ========================================
-      _updateAnimationSpeedFromState(state.animationSpeed);
-
-      // ========================================
-      // ANIMATION START HANDLING
-      // ========================================
-      _handleAnimationStart(state);
-    }
-  }
-
-  void _updateAnimationSpeedFromState(double speed) {
-    // Calculate duration based on speed multiplier
-    const baseDuration = 6.0; // 6 seconds for normal speed
-    final calculatedDuration = baseDuration / speed;
-    _animationController.duration = Duration(
-      milliseconds: (calculatedDuration * 1000).toInt(),
-    );
-  }
-
-  void _handleAnimationStart(WheelLoaded state) {
-    final bloc = context.read<WheelBloc>();
-    final widgetBloc = context.read<WheelWidgetBloc>();
-
-    if (state.isAnimating &&
-        !widgetBloc.state.isAnimationRunning &&
-        bloc.pendingResult != null) {
-      _wheelController.resetToInitialPosition();
-      _wheelController.spinToSegment(
-        selectedSegment: bloc.pendingResult!,
-        segments: state.segments,
-      );
-    }
   }
 
   // ========================================
   // CONTENT BUILDING METHODS
   // ========================================
-  Widget _buildWheelContent(BuildContext context, WheelState state) {
-    if (state is WheelLoading) {
-      return _buildLoadingState();
-    } else if (state is WheelLoaded) {
-      return _buildLoadedState(state);
-    } else if (state is WheelError) {
-      return _buildErrorState(state);
-    }
-
-    return const Center(child: Text("Yükleniyor..."));
-  }
-
-  // ========================================
-  // LOADING STATE WIDGETS
-  // ========================================
-  Widget _buildLoadingState() {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircularProgressIndicator(),
-        ],
-      ),
-    );
+  Widget _buildWheelContent() {
+    return _buildLoadedState();
   }
 
   // ========================================
   // LOADED STATE WIDGETS
   // ========================================
-  Widget _buildLoadedState(WheelLoaded state) {
+  Widget _buildLoadedState() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // ========================================
         // WHEEL DISPLAY SECTION
         // ========================================
-        _buildWheelDisplaySection(state),
+        _buildWheelDisplaySection(),
 
         // ========================================
         // CONTROLS SECTION
@@ -433,7 +372,7 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
           SizedBox(
             height: widget.removeSpinButtonOffset ? 0 : widget.spinButtonOffset,
           ),
-        if (widget.showSpinButton) _buildControlsSection(state),
+        if (widget.showSpinButton) _buildControlsSection(),
       ],
     );
   }
@@ -441,17 +380,20 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
   // ========================================
   // WHEEL DISPLAY SECTION WIDGETS
   // ========================================
-  Widget _buildWheelDisplaySection(WheelLoaded state) {
+  Widget _buildWheelDisplaySection() {
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return BlocProvider(
-          create: (context) => WheelDisplayBloc(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: context.read<WheelWidgetBloc>()),
+            BlocProvider(create: (context) => WheelDisplayBloc()),
+          ],
           child: WheelDisplay(
-            key: ValueKey(state.segments.map((e) => e.id).join(',')),
-            segments: state.segments,
+            key: ValueKey(widget.segments.map((e) => e.id).join(',')),
+            segments: widget.segments,
             angle: _wheelController.currentAngle,
-            size: state.wheelSize,
+            size: widget.wheelSize,
             showPointer: widget.showPointer,
             pointerOffset: widget.pointerOffset,
             pointerColor: widget.pointerColor,
@@ -473,48 +415,53 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
             initialAngle: widget.initialAngle,
             segmentGap: widget.segmentGap,
             centerWidget: widget.centerWidget,
+            onWheelTap: widget.enableTapToSpin ? _handleWheelTap : null,
           ),
         );
       },
     );
   }
 
+  void _handleWheelTap() {
+    if (!_animationController.isAnimating) {
+      _startSpinAnimation();
+    }
+  }
+
   // ========================================
   // CONTROLS SECTION WIDGETS
   // ========================================
-  Widget _buildControlsSection(WheelLoaded state) {
+  Widget _buildControlsSection() {
     return WheelControls(
       spinButtonText: widget.spinButtonText,
       spinButtonTextStyle: widget.spinButtonTextStyle,
       spinButtonColor: widget.spinButtonColor,
       spinButtonIcon: widget.spinButtonIcon,
+      onSpinPressed: _handleSpinButtonPress,
+      isSpinning: _animationController.isAnimating,
     );
   }
 
-  // ========================================
-  // ERROR STATE WIDGETS
-  // ========================================
-  Widget _buildErrorState(WheelError state) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.error_outline, size: 64, color: Colors.red[300]),
-          const SizedBox(height: 16),
-          Text(
-            "Hata: ${state.message}",
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton.icon(
-            onPressed: () => context.read<WheelBloc>().add(LoadWheelSegments()),
-            icon: const Icon(Icons.refresh),
-            label: const Text("Tekrar Dene"),
-          ),
-        ],
-      ),
+  void _handleSpinButtonPress() {
+    if (!_animationController.isAnimating) {
+      _startSpinAnimation();
+    }
+  }
+
+  void _startSpinAnimation() {
+    _wheelController.resetToInitialPosition();
+
+    // Select a random segment
+    final random = Random();
+    final randomSegment =
+        widget.segments[random.nextInt(widget.segments.length)];
+
+    _wheelController.spinToSegment(
+      selectedSegment: randomSegment,
+      segments: widget.segments,
     );
+
+    _animationController.forward();
   }
 
   // ========================================

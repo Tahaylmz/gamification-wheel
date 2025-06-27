@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'dart:math';
 
 class MockSpinWheelUseCase implements SpinWheelUseCase {
+  @override
   final WheelRepository repository;
   final Random _random = Random();
 
