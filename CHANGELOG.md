@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.1] - 2024-06-27
+## [0.1.2] - 2025-06-27
+- Corrected release date in CHANGELOG.md
+- Minor content improvements for pub.dev compatibility
+
+## [0.1.1] - 2025-06-27
 
 ### 📝 Documentation
 - Corrected release date in CHANGELOG.md

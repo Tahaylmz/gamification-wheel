@@ -298,4 +298,4 @@ Thanks to all open source libraries and community used in developing this projec
 
 **Developer:** Taha Yılmaz  
 **Last Update:** 2025  
-**Version:** 0.1.0 
+**Version:** 0.1.2 
