@@ -10,7 +10,7 @@
 
 ## 📋 About the Project
 
-**Gamification Wheel** - An interactive wheel application developed with Flutter, following Clean Architecture principles and BLoC pattern for state management.
+**Gamification Wheel** - An interactive wheel application developed with Flutter, following Clean Architecture principles and the BLoC pattern for state management.
 
 ### 🎯 Features
 - Clean Architecture (Domain, Data, Presentation Layers)
@@ -102,33 +102,32 @@ flutter run
 - `lib/presentation/widgets/wheel/wheel_animation_controller.dart` - Animation control
 - `lib/core/constants/wheel_constants.dart` - Wheel configuration constants
 - `lib/core/constants/color_constants.dart` - Color constants
-- `lib/utils/color_utils.dart` - Color utility functions
 
 ---
 
 ## 🔧 Development Rules
 
-- Dart Style Guide'a uygun kod yazımı
-- Clean Code ve SOLID prensipleri
-- Clean Architecture katmanlarına uyum
-- Güncel ve gereksiz bağımlılıklardan arındırılmış paket yönetimi
+- Write code following the Dart Style Guide
+- Clean Code and SOLID principles
+- Compliance with Clean Architecture layers
+- Package management free from unnecessary dependencies and always up-to-date
 
 ---
 
 ## 🧪 Testing Strategy
 
-- Unit Tests (Kritik iş mantığı ve yardımcı fonksiyonlar)
-- Widget Tests (Temel UI bileşenleri)
-- Integration Tests (Uçtan uca testler)
+- Unit Tests (critical business logic and helper functions)
+- Widget Tests (main UI components)
+- Integration Tests (end-to-end tests)
 
 ---
 
 ## 📈 Performance Optimization
 
-- Widget rebuild optimizasyonu
-- dispose metodları ile bellek yönetimi
-- Animasyon performansı iyileştirmeleri
-- Custom Paint optimizasyonu
+- Widget rebuild optimization
+- Memory management with dispose methods
+- Animation performance improvements
+- Custom Paint optimization
 
 ---
 
@@ -146,21 +145,21 @@ flutter run
 - Android: API Level 21+
 - iOS: iOS 12.0+
 - Web: Modern browsers
-- Responsive design, dark/light theme, erişilebilirlik desteği
+- Responsive design, dark/light theme, accessibility support
 
 ---
 
 ## 🚀 Deployment
 
-- iOS ve Android için release build komutları
-- Web için release build ve hosting
+- Release build commands for iOS and Android
+- Release build and hosting for Web
 
 ---
 
 ## 🤝 Contributing
 
-- Fork, feature branch, commit, pull request süreci
-- Commit mesajlarında conventional commit kuralları (feat, fix, docs, style, refactor, test, chore)
+- Fork, feature branch, commit, pull request process
+- Use conventional commit messages (feat, fix, docs, style, refactor, test, chore)
 
 ---
 
@@ -170,8 +169,8 @@ flutter run
 - **GitHub:** [@Tahaylmz](https://github.com/Tahaylmz)
 - **Position:** Mobile App Developer
 - **Location:** Bursa, Turkey
-- **GitHub Issues:** Proje ile ilgili sorunlar için
-- **Email:** [GitHub profilinden ulaşılabilir](https://github.com/Tahaylmz)
+- **GitHub Issues:** For project-related issues
+- **Email:** [Available through GitHub profile](https://github.com/Tahaylmz)
 
 ---
 
@@ -183,8 +182,8 @@ MIT License
 
 ## 🙏 Acknowledgments
 
-Thanks to all open source libraries and community used in developing this project.
+Thanks to all open source libraries and the community used in developing this project.
 
 **Developer:** Taha Yılmaz  
 **Last Update:** 2025  
-**Version:** 0.1.3 
+**Version:** 0.1.4

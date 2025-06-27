@@ -2,17 +2,6 @@ import 'package:flutter/material.dart';
 import '../../domain/entities/wheel/wheel_segment.dart';
 import '../widgets/wheel/wheel_widget.dart';
 
-Color _rainbowColor(int index, int total) {
-  final hue = (index * 360 / total) % 360;
-  return HSLColor.fromAHSL(1.0, hue, 0.85, 0.55).toColor();
-}
-
-String _colorToHex(Color color) => '#'
-        '${(color.r * 255).round().toRadixString(16).padLeft(2, '0')}'
-        '${(color.g * 255).round().toRadixString(16).padLeft(2, '0')}'
-        '${(color.b * 255).round().toRadixString(16).padLeft(2, '0')}'
-    .toUpperCase();
-
 class WheelPage extends StatelessWidget {
   const WheelPage({super.key});
 
@@ -21,18 +10,14 @@ class WheelPage extends StatelessWidget {
   // ========================================
   @override
   Widget build(BuildContext context) {
-    const segmentCount = 8;
-    final segments = List.generate(
-        segmentCount,
-        (i) => WheelSegment(
-              id: 'SEG$i',
-              text: 'COLOR ${i + 1}',
-              color: _colorToHex(_rainbowColor(i, segmentCount)),
-            ));
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: GWheel(
-          segments: segments,
+          segments: [
+            WheelSegment(id: '1', text: '1', color: Colors.red),
+            WheelSegment(id: '2', text: '2', color: Colors.green),
+            WheelSegment(id: '3', text: '3', color: Colors.blue),
+          ],
           // pointerOffset: 15,
           // spinButtonOffset: 16,
           // removeSpinButtonOffset: false,

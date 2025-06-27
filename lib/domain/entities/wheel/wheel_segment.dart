@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart' show Color;
 
 // ========================================
 // WHEEL SEGMENT ENTITY
@@ -13,7 +14,7 @@ class WheelSegment extends Equatable {
   // ========================================
   final String id; // Unique segment identifier
   final String text; // Text to be displayed on the segment
-  final String color; // Segment color (hex format)
+  final Color color; // Segment color
   final double probability; // Probability of the segment being selected
 
   // ========================================
@@ -22,7 +23,7 @@ class WheelSegment extends Equatable {
   const WheelSegment({
     required this.id, // Unique segment identifier
     required this.text, // Text to be displayed on the segment
-    required this.color, // Segment color (hex format)
+    required this.color, // Segment color
     this.probability = 1.0, // Default weight
   });
 
@@ -38,7 +39,7 @@ class WheelSegment extends Equatable {
   WheelSegment copyWith({
     String? id,
     String? text,
-    String? color,
+    Color? color,
     double? probability,
   }) {
     return WheelSegment(

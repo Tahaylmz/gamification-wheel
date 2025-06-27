@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart' show Colors, Color;
 import '../../../domain/entities/wheel/wheel_segment.dart';
 import 'events.dart';
 import 'states.dart';
@@ -50,7 +51,7 @@ class WheelDisplayBloc extends Bloc<WheelDisplayEvent, WheelDisplayState> {
     // VALIDATION
     // ========================================
     if (segments.isEmpty) {
-      return const WheelSegment(id: '1', text: '1', color: '#FF6B6B');
+      return const WheelSegment(id: '1', text: '1', color: Colors.red);
     }
 
     // ========================================
@@ -114,8 +115,8 @@ class WheelDisplayBloc extends Bloc<WheelDisplayEvent, WheelDisplayState> {
   }
 
   /// Calculates the arrow color
-  String getArrowColorHex(WheelSegment currentSegment, double angle) {
+  Color getArrowColor(WheelSegment currentSegment, double angle) {
     // Black if wheel hasn't started spinning, segment color if it has
-    return angle == 0.0 ? '#000000' : currentSegment.color;
+    return angle == 0.0 ? Colors.black : currentSegment.color;
   }
 }

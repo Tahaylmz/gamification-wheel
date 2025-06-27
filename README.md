@@ -29,7 +29,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  gamification_wheel: ^0.1.2
+  gamification_wheel: ^0.1.4
 ```
 
 Then run:
@@ -43,11 +43,12 @@ flutter pub get
 
 ```dart
 import 'package:gamification_wheel/gamification_wheel.dart';
+import 'package:flutter/material.dart';
 
 final segments = [
-  WheelSegment(id: '1', text: 'Pizza', color: '#FF6B6B', probability: 2.0),
-  WheelSegment(id: '2', text: 'Burger', color: '#4ECDC4', probability: 1.0),
-  WheelSegment(id: '3', text: 'Sushi', color: '#45B7D1', probability: 1.0),
+  WheelSegment(id: '1', text: 'Pizza', color: Colors.red, probability: 2.0),
+  WheelSegment(id: '2', text: 'Burger', color: Colors.teal, probability: 1.0),
+  WheelSegment(id: '3', text: 'Sushi', color: Colors.blue, probability: 1.0),
   // ... more segments
 ];
 
@@ -68,11 +69,37 @@ GWheel(
 
 ---
 
+## More Examples
+
+### Custom Pointer Example
+```dart
+GWheel(
+  segments: segments,
+  customPointer: Icon(Icons.arrow_drop_down, size: 48, color: Colors.amber),
+  onFinish: (result) {
+    // handle result
+  },
+)
+```
+
+### Custom Spin Button Example
+```dart
+GWheel(
+  segments: segments,
+  customSpinButton: ElevatedButton(
+    onPressed: () {/* spin logic */},
+    child: Text('Try Your Luck!'),
+  ),
+)
+```
+
+---
+
 ## Customization
 
 - **Wheel Size**: `wheelSize` (e.g. 200-400)
 - **Animation Speed**: `animationSpeed` (0.5x to 3.0x)
-- **Segment Colors**: Any hex color code
+- **Segment Colors**: Now use Flutter `Color` objects (e.g. `Colors.red`)
 - **Probability**: Set different weights for each segment
 - **Pointer & Center Widget**: Fully customizable
 - **Styling**: Shadows, borders, font styles, and more
@@ -84,6 +111,16 @@ GWheel(
 - [API Reference](https://pub.dev/documentation/gamification_wheel/latest/)
 - [Changelog](https://pub.dev/packages/gamification_wheel/changelog)
 - [Example](https://github.com/Tahaylmz/gamification-wheel/tree/master/example)
+
+### Changelog (v0.1.4)
+
+#### 🛠 Breaking Changes
+- **Color Parameters Updated:** Colors are now provided as Flutter `Color` objects instead of strings. All related functions and widget parameters have been updated accordingly.
+
+#### 🧹 Cleanup & Improvements
+- **Removed Unused Dependencies:** All unnecessary dependencies have been completely removed from the project.
+- **Color Utils Updated:** Helper functions for color (`rainbowColor`, `colorToHex`, etc.) have been updated and moved to utils, following modern Dart/Flutter standards.
+- **Documentation Updated:** Developer and user documentation has been simplified and cleaned up to reflect these changes.
 
 ---
 

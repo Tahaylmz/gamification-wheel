@@ -44,37 +44,37 @@ class _WheelExamplePageState extends State<WheelExamplePage> {
       const WheelSegment(
         id: '1',
         text: 'Pizza',
-        color: '#FF6B6B',
+        color: Colors.red,
         probability: 2.0,
       ),
       const WheelSegment(
         id: '2',
         text: 'Burger',
-        color: '#4ECDC4',
+        color: Colors.green,
         probability: 1.5,
       ),
       const WheelSegment(
         id: '3',
         text: 'Sushi',
-        color: '#45B7D1',
+        color: Colors.blue,
         probability: 1.0,
       ),
       const WheelSegment(
         id: '4',
         text: 'Pasta',
-        color: '#96CEB4',
+        color: Colors.yellow,
         probability: 1.8,
       ),
       const WheelSegment(
         id: '5',
         text: 'Salad',
-        color: '#FFEAA7',
+        color: Colors.orange,
         probability: 0.8,
       ),
       const WheelSegment(
         id: '6',
         text: 'Steak',
-        color: '#DDA0DD',
+        color: Colors.purple,
         probability: 1.2,
       ),
     ];
@@ -221,16 +221,15 @@ class _WheelExamplePageState extends State<WheelExamplePage> {
     });
   }
 
-  String _getRandomColor() {
+  Color _getRandomColor() {
     final colors = [
-      '#FF6B6B',
-      '#4ECDC4',
-      '#45B7D1',
-      '#96CEB4',
-      '#FFEAA7',
-      '#DDA0DD',
-      '#FF8A80',
-      '#80CBC4',
+      Colors.red,
+      Colors.green,
+      Colors.blue,
+      Colors.yellow,
+      Colors.orange,
+      Colors.purple,
+      Colors.brown,
     ];
     return colors[DateTime.now().millisecond % colors.length];
   }

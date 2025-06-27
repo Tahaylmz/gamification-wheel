@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../domain/entities/wheel/wheel_segment.dart';
 import '../../../core/constants/color_constants.dart';
-import '../../../utils/color_utils.dart';
 
 class WheelPainter extends CustomPainter {
   // ========================================
@@ -131,7 +130,7 @@ class WheelPainter extends CustomPainter {
     double angleSize,
     WheelSegment segment,
   ) {
-    paint.color = ColorUtils.parseColor(segment.color);
+    paint.color = segment.color;
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),

@@ -7,7 +7,6 @@ import '../../blocs/wheel_display/wheel_display_bloc.dart';
 import '../../blocs/wheel_display/states.dart';
 import 'wheel_painter.dart';
 import '../../../core/constants/color_constants.dart';
-import '../../../utils/color_utils.dart';
 
 class WheelDisplay extends StatelessWidget {
   // ========================================
@@ -85,19 +84,16 @@ class WheelDisplay extends StatelessWidget {
           segments,
           angle,
         );
-        final arrowColorHex = wheelDisplayBloc.getArrowColorHex(
+        Color arrowColor = wheelDisplayBloc.getArrowColor(
           currentSegment,
           angle,
         );
-        Color arrowColor;
         if (animatePointerColor && blocState.isSpinning) {
           // Animated color: rainbow
           final t = (angle * 180 / 3.14159) % 360;
           arrowColor = HSLColor.fromAHSL(1.0, t, 0.85, 0.55).toColor();
         } else if (!animatePointerColor) {
           arrowColor = pointerColor;
-        } else {
-          arrowColor = ColorUtils.parseColor(arrowColorHex);
         }
 
         return GestureDetector(

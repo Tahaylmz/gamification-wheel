@@ -32,9 +32,6 @@ export 'domain/entities/wheel/wheel_segment.dart';
 export 'core/constants/wheel_constants.dart';
 export 'core/constants/color_constants.dart';
 
-// Utils
-export 'utils/color_utils.dart';
-
 // Repository Interface
 export 'domain/repositories/wheel_repository.dart';
 

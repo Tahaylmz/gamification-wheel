@@ -3,7 +3,7 @@ name: gamification_wheel
 # PROJECT DESCRIPTION
 # ========================================
 description: A fully customizable gamification wheel Flutter widget with Clean Architecture and BLoC pattern. Perfect for games, decision-making, and interactive applications.
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/Tahaylmz/gamification-wheel
 repository: https://github.com/Tahaylmz/gamification-wheel
 issue_tracker: https://github.com/Tahaylmz/gamification-wheel/issues
@@ -71,11 +71,3 @@ flutter:
   # =====================
   # FONTS
   # =====================
-  # fonts:
-  #   - family: CustomFont
-  #     fonts:
-  #       - asset: assets/fonts/CustomFont-Regular.ttf
-  #       - asset: assets/fonts/CustomFont-Bold.ttf
-  #         weight: 700
-  # Main widget of the package
-  # These files will be included in the package

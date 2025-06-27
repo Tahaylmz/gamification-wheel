@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2025-06-27
+
+### 🛠 Breaking Changes
+- **Color Parameters Updated:** Colors are now provided as Flutter `Color` objects instead of strings. All related functions and widget parameters have been updated accordingly.
+
+### 🧹 Cleanup & Improvements
+- **Removed Unused Dependencies:** All unnecessary dependencies have been completely removed from the project.
+- **Color Utils Updated:** Helper functions for color (`rainbowColor`, `colorToHex`, etc.) have been updated and moved to utils, following modern Dart/Flutter standards.
+- **Documentation Updated:** Developer and user documentation has been simplified and cleaned up to reflect these changes.
+
 ## [0.1.3] - 2025-06-27
 
 ### 🐛 Bug Fixes
@@ -55,5 +65,3 @@ All notable changes to this project will be documented in this file.
 - Weighted random algorithm for fair segment selection.
 - Modular and clean code structure.
 - Well-documented public API.
-
----

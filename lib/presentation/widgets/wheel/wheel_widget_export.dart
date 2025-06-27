@@ -23,6 +23,3 @@ export '../../../domain/entities/wheel/wheel_segment.dart';
 // Constants
 export '../../../core/constants/wheel_constants.dart';
 export '../../../core/constants/color_constants.dart';
-
-// Utils
-export '../../../utils/color_utils.dart';
