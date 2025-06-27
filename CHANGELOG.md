@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.0] - 2024-06-XX
+## [0.1.1] - 2024-06-27
+
+### 📝 Documentation
+- Corrected release date in CHANGELOG.md
+- Minor improvements to documentation and demo GIF visibility
+
+## [0.1.0] - 2025-06-27
 
 ### ✨ Initial Release
 - **Customizable Wheel Widget**: Fully customizable spinning wheel widget for Flutter.
@@ -17,6 +23,7 @@ All notable changes to this project will be documented in this file.
 - **Tap to Spin**: Tap the wheel or use a button to spin.
 - **Result Consistency**: The segment shown under the pointer always matches the result displayed.
 - **Gambling Warning**: Explicit warning that the package is not for gambling/betting.
+- **Demo GIF**: Demo GIF added to README via GitHub raw link for pub.dev visibility.
 
 ### Technical Features
 - Self-contained widget, no BLoC or Provider required.
