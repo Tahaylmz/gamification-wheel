@@ -479,8 +479,7 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
 
   void _startSpinAnimation() {
     _wheelController.resetToInitialPosition();
-
-    // Ağırlıklı rastgele segment seçimi
+    
     final randomSegment = _pickWeightedRandomSegment(widget.segments);
 
     _wheelController.spinToSegment(

@@ -1,6 +1,14 @@
 # 🎯 Gamification Wheel
 
-A fully customizable gamification wheel application developed with Flutter, following Clean Architecture principles and BLoC pattern for state management. Perfect for games, decision-making, and interactive applications.
+A fully customizable, production-ready spinning wheel package for Flutter. Perfect for games, decision-making, rewards, and interactive applications. **Not intended for gambling or betting purposes.**
+
+---
+
+## ⚡ What is Gamification Wheel?
+
+Gamification Wheel is a Flutter package that provides a beautiful, animated, and highly customizable spinning wheel widget. You can define your own segments, assign different probabilities (weights), customize colors, and handle spin results easily. The package is designed with Clean Architecture and best Flutter practices.
+
+---
 
 ## 📹 Demo
 
@@ -208,8 +216,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - **Developer**: Taha Yılmaz
 - **GitHub**: [@Tahaylmz](https://github.com/Tahaylmz)
-- **Company**: Analitik Yazılım
-- **Location**: Bursa, Turkey
 
 ### Support Channels
 - **GitHub Issues**: For bug reports and feature requests
