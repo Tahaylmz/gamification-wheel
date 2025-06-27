@@ -4,6 +4,10 @@
 // Main export file for the gamification wheel package
 // This file exports all public APIs
 
+library gamification_wheel;
+
+export 'presentation/widgets/wheel/wheel_widget_export.dart';
+
 // Main Widget
 export 'presentation/widgets/wheel/wheel_widget.dart';
 
