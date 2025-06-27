@@ -168,7 +168,6 @@ flutter run
 
 - **Name:** Taha Yılmaz
 - **GitHub:** [@Tahaylmz](https://github.com/Tahaylmz)
-- **Company:** Analitik Yazılım
 - **Position:** Mobile App Developer
 - **Location:** Bursa, Turkey
 - **GitHub Issues:** Proje ile ilgili sorunlar için
