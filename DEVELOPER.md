@@ -4,9 +4,7 @@
 
 **Main Developer:** [Taha Yılmaz](https://github.com/Tahaylmz)  
 **GitHub:** [@Tahaylmz](https://github.com/Tahaylmz)  
-**Position:** Flutter Developer  
-**Company:** Analitik Yazılım - Mobile App Developer  
-**Location:** Bursa, Turkey
+**Position:** Flutter Developer
 
 ---
 
@@ -300,4 +298,4 @@ Thanks to all open source libraries and community used in developing this projec
 
 **Developer:** Taha Yılmaz  
 **Last Update:** 2025  
-**Version:** 1.0.0 
+**Version:** 0.1.0 
