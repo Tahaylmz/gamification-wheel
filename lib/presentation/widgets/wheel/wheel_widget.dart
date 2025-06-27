@@ -123,7 +123,7 @@ class WheelWidget extends StatelessWidget {
         removeSpinButtonOffset: removeSpinButtonOffset!,
         pointerColor: pointerColor!,
         animatePointerColor: animatePointerColor!,
-        onFinish: onFinish!,
+        onFinish: onFinish,
         enableTapToSpin: enableTapToSpin!,
         showCenterDot: showCenterDot!,
         showWheelBorder: showWheelBorder!,
@@ -146,9 +146,11 @@ class WheelWidget extends StatelessWidget {
         initialAngle: initialAngle!,
         segmentGap: clampedSegmentGap,
         centerWidget: centerWidget,
-        onSpinning: onSpinning!,
+        onSpinning: onSpinning,
         onSpinStart: onSpinStart,
         onSpinEnd: onSpinEnd,
+        customPointer: customPointer,
+        customSpinButton: customSpinButton,
       ),
     );
   }
@@ -191,6 +193,8 @@ class _WheelWidgetContent extends StatefulWidget {
   final void Function(double progress)? onSpinning;
   final VoidCallback? onSpinStart;
   final VoidCallback? onSpinEnd;
+  final Widget? customSpinButton;
+  final Widget? customPointer;
 
   const _WheelWidgetContent({
     required this.segments,
@@ -203,7 +207,7 @@ class _WheelWidgetContent extends StatefulWidget {
     required this.removeSpinButtonOffset,
     required this.pointerColor,
     required this.animatePointerColor,
-    required this.onFinish,
+    this.onFinish,
     required this.enableTapToSpin,
     required this.showCenterDot,
     required this.showWheelBorder,
@@ -229,6 +233,8 @@ class _WheelWidgetContent extends StatefulWidget {
     this.onSpinning,
     this.onSpinStart,
     this.onSpinEnd,
+    this.customSpinButton,
+    this.customPointer,
   });
 
   @override
@@ -431,6 +437,7 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
             segmentGap: widget.segmentGap,
             centerWidget: widget.centerWidget,
             onWheelTap: widget.enableTapToSpin ? _handleWheelTap : null,
+            customPointer: widget.customPointer,
           ),
         );
       },
@@ -452,6 +459,7 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
       spinButtonTextStyle: widget.spinButtonTextStyle,
       spinButtonColor: widget.spinButtonColor,
       spinButtonIcon: widget.spinButtonIcon,
+      customSpinButton: widget.customSpinButton,
       onSpinPressed: _handleSpinButtonPress,
       isSpinning: _animationController.isAnimating,
     );
@@ -479,7 +487,7 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
 
   void _startSpinAnimation() {
     _wheelController.resetToInitialPosition();
-    
+
     final randomSegment = _pickWeightedRandomSegment(widget.segments);
 
     _wheelController.spinToSegment(

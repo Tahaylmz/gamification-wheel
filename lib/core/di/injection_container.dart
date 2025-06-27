@@ -1,6 +1,5 @@
 import '../../data/datasources/wheel_local_datasource.dart';
 import 'package:get_it/get_it.dart';
-import 'package:dio/dio.dart';
 import '../../data/repositories/wheel_repository_impl.dart';
 import '../../domain/repositories/wheel_repository.dart';
 import '../../domain/usecases/spin_wheel_usecase.dart';
@@ -34,11 +33,6 @@ Future<void> init() async {
   // DATA SOURCES REGISTRATION
   // ========================================
   _registerDataSources();
-
-  // ========================================
-  // EXTERNAL DEPENDENCIES REGISTRATION
-  // ========================================
-  _registerExternalDependencies();
 }
 
 // ========================================
@@ -93,11 +87,4 @@ void _registerDataSources() {
   sl.registerLazySingleton<WheelLocalDataSource>(
     () => WheelLocalDataSourceImpl(),
   );
-}
-
-// ========================================
-// EXTERNAL DEPENDENCIES REGISTRATION METHODS
-// ========================================
-void _registerExternalDependencies() {
-  sl.registerLazySingleton(() => Dio());
 }

@@ -41,4 +41,3 @@ class UpdateAnimationSpeed extends WheelEvent {
   @override
   List<Object?> get props => [speed];
 }
- 

@@ -2,7 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2025-06-27
+
+### 🐛 Bug Fixes
+- **Fixed Null Safety Issues**: Resolved null safety-related errors that were occurring despite default values being set
+- **Dio Dependency Removed**: Removed unused Dio dependency to reduce package size and improve performance
+- **Fixed Unused Parameter Warnings**: Resolved "unused_element_parameter" warnings for callback functions
+- **Removed Unused Dependencies**: Completely removed all references to `freezed`, `json_serializable`, `build_runner`, and `freezed_annotation` from the codebase and documentation
+
+### ✨ New Features
+- **Custom Spin Button**: Added support for custom spin button widgets via `customSpinButton` parameter
+- **Custom Pointer**: Added support for custom pointer widgets via `customPointer` parameter
+- **Enhanced Customization**: Improved widget customization options for better user experience
+
+### 🔧 Technical Improvements
+- **Better Null Safety**: Improved null safety implementation throughout the widget
+- **Code Optimization**: Enhanced code structure and performance optimizations
+- **Parameter Validation**: Better parameter validation and error handling
+- **Documentation Cleanup**: Developer and user documentation has been simplified and cleaned up to remove all references to removed dependencies and to improve clarity
+
 ## [0.1.2] - 2025-06-27
+
+### 📝 Documentation
 - Corrected release date in CHANGELOG.md
 - Minor content improvements for pub.dev compatibility
 

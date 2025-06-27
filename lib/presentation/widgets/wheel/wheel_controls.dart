@@ -10,7 +10,6 @@ class WheelControls extends StatelessWidget {
   final Color spinButtonColor;
   final Widget spinButtonIcon;
   final Widget? customSpinButton;
-  final Widget? customPointer;
   final VoidCallback? onSpinPressed;
   final bool isSpinning;
 
@@ -21,7 +20,6 @@ class WheelControls extends StatelessWidget {
     required this.spinButtonColor,
     required this.spinButtonIcon,
     this.customSpinButton,
-    this.customPointer,
     this.onSpinPressed,
     this.isSpinning = false,
   });

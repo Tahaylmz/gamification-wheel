@@ -48,4 +48,3 @@ class WheelWidgetBloc extends Bloc<WheelWidgetEvent, WheelWidgetState> {
     emit(state.copyWith(previousLastResultId: event.lastResultId));
   }
 }
- 

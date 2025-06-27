@@ -37,8 +37,6 @@ assets/ @Tahaylmz
 # Build and generated files
 build/ @Tahaylmz
 .dart_tool/ @Tahaylmz
-**/*.g.dart @Tahaylmz
-**/*.freezed.dart @Tahaylmz
 
 # Git and CI/CD files
 .gitignore @Tahaylmz

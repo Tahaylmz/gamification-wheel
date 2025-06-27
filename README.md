@@ -83,13 +83,13 @@ GWheel(
 
 - [API Reference](https://pub.dev/documentation/gamification_wheel/latest/)
 - [Changelog](https://pub.dev/packages/gamification_wheel/changelog)
-- [Example](https://github.com/Tahaylmz/gamification-wheel/tree/main/example)
+- [Example](https://github.com/Tahaylmz/gamification-wheel/tree/master/example)
 
 ---
 
 ## License
 
-MIT License. See [LICENSE](https://github.com/Tahaylmz/gamification-wheel/blob/main/LICENSE).
+MIT License. See [LICENSE](https://github.com/Tahaylmz/gamification-wheel/blob/master/LICENSE).
 
 ---
 

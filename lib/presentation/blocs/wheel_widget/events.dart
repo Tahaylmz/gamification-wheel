@@ -46,4 +46,3 @@ class UpdatePreviousLastResult extends WheelWidgetEvent {
   @override
   List<Object?> get props => [lastResultId];
 }
- 

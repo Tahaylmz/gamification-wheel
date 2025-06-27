@@ -32,13 +32,13 @@ class WheelLoaded extends WheelState {
 
   @override
   List<Object?> get props => [
-    segments,
-    lastResult,
-    isSpinning,
-    isAnimating,
-    wheelSize,
-    animationSpeed,
-  ];
+        segments,
+        lastResult,
+        isSpinning,
+        isAnimating,
+        wheelSize,
+        animationSpeed,
+      ];
 
   WheelLoaded copyWith({
     List<WheelSegment>? segments,

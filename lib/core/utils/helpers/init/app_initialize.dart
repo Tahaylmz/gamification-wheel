@@ -12,7 +12,7 @@ class AppInitialize {
     // DEPENDENCY INJECTION INITIALIZATION
     // ========================================
     await _initializeDependencyInjection();
-    }
+  }
 
   // ========================================
   // DEPENDENCY INJECTION METHODS

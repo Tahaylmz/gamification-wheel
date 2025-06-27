@@ -38,6 +38,7 @@ class WheelDisplay extends StatelessWidget {
   final double segmentGap;
   final Widget? centerWidget;
   final VoidCallback? onWheelTap;
+  final Widget? customPointer;
 
   const WheelDisplay({
     super.key,
@@ -66,6 +67,7 @@ class WheelDisplay extends StatelessWidget {
     required this.segmentGap,
     this.centerWidget,
     this.onWheelTap,
+    this.customPointer,
   });
 
   // ========================================
@@ -123,7 +125,9 @@ class WheelDisplay extends StatelessWidget {
               // ========================================
               // ARROW POINTER SECTION
               // ========================================
-              if (showPointer) _buildArrowPointerSection(arrowColor),
+              if (showPointer)
+                _buildArrowPointerSection(arrowColor,
+                    customPointer: customPointer),
 
               // ========================================
               // SPINNING INDICATOR (if spinning)
@@ -212,7 +216,7 @@ class WheelDisplay extends StatelessWidget {
   // ========================================
   // ARROW POINTER SECTION WIDGETS
   // ========================================
-  Widget _buildArrowPointerSection(Color arrowColor) {
+  Widget _buildArrowPointerSection(Color arrowColor, {Widget? customPointer}) {
     // Calculate the point where the pointer will emerge from the center of the wheel
     final double r = (size / 2) + pointerOffset;
     final double pointerX = r * sin(initialAngle);
@@ -223,12 +227,15 @@ class WheelDisplay extends StatelessWidget {
       top: (size / 2) + pointerY + 15,
       child: Transform.rotate(
         angle: initialAngle,
-        child: _buildPointer(arrowColor),
+        child: _buildPointer(arrowColor, customPointer: customPointer),
       ),
     );
   }
 
-  Widget _buildPointer(Color arrowColor) {
+  Widget _buildPointer(Color arrowColor, {Widget? customPointer}) {
+    if (customPointer != null) {
+      return customPointer;
+    }
     return Container(
       width: 0,
       height: 0,

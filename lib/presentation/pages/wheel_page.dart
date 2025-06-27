@@ -33,11 +33,11 @@ class WheelPage extends StatelessWidget {
       body: Center(
         child: GWheel(
           segments: segments,
-          pointerOffset: 15,
-          spinButtonOffset: 16,
-          removeSpinButtonOffset: false,
-          wheelSize: 250,
-          animationSpeed: 2,
+          // pointerOffset: 15,
+          // spinButtonOffset: 16,
+          // removeSpinButtonOffset: false,
+          // wheelSize: 250,
+          // animationSpeed: 2,
           // showSpinButton: true,
           // showPointer: true,
           // animatePointerColor: false,
@@ -65,21 +65,23 @@ class WheelPage extends StatelessWidget {
 
           // initialAngle: 0.0,
           // segmentGap: 0.0,
-          showCenterDot: true,
-          centerWidget: const Icon(Icons.star, size: 32, color: Colors.amber),
-          onSpinning: (progress) {
-            // Wheel is spinning
-          },
-          onFinish: (result) {
-            // Wheel result received
-            print(result);
-          },
-          onSpinEnd: () {
-            // Wheel spin ended
-          },
-          onSpinStart: () {
-            // Wheel spin started
-          },
+          // showCenterDot: true,
+          // centerWidget: const Icon(Icons.star, size: 32, color: Colors.amber),
+          // onSpinning: (progress) {
+          //   // Wheel is spinning
+          // },
+          // onFinish: (result) {
+          //   // Wheel result received
+          //   print(result);
+          // },
+          // onSpinEnd: () {
+          //   // Wheel spin ended
+          // },
+          // onSpinStart: () {
+          //   // Wheel spin started
+          // },
+          // customPointer: const Icon(Icons.star, size: 32, color: Colors.amber),
+          // showPointer: false,
         ),
       ),
     );
