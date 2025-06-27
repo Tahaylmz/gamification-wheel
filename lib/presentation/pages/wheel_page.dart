@@ -72,6 +72,7 @@ class WheelPage extends StatelessWidget {
           },
           onFinish: (result) {
             // Wheel result received
+            print(result);
           },
           onSpinEnd: () {
             // Wheel spin ended

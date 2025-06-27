@@ -15,15 +15,6 @@ dependencies:
   # Local package dependency
   gamification_wheel:
     path: ../
-  
-  # BLoC dependencies
-  flutter_bloc: ^8.1.6
-  bloc: ^8.1.4
-  equatable: ^2.0.5
-  
-  # Other dependencies
-  get_it: ^7.7.0
-  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

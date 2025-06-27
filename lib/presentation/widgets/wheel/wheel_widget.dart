@@ -305,7 +305,8 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
   }
 
   void _handleSpinCompletion() {
-    final finalAngle = _wheelController.animation.value;
+    final finalAngle =
+        (_wheelController.currentAngle + (widget.initialAngle)) % (2 * pi);
     final selectedSegment = _getSelectedSegment(finalAngle);
 
     if (selectedSegment != null && widget.onFinish != null) {
@@ -316,14 +317,28 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
   WheelSegment? _getSelectedSegment(double angle) {
     if (widget.segments.isEmpty) return null;
 
-    final segmentAngle = 2 * pi / widget.segments.length;
-    final normalizedAngle = (angle + widget.initialAngle) % (2 * pi);
-    final segmentIndex = (normalizedAngle / segmentAngle).floor();
+    final normalizedAngle = angle % (2 * pi);
+    final adjustedAngle = (2 * pi - normalizedAngle) % (2 * pi);
 
-    if (segmentIndex >= 0 && segmentIndex < widget.segments.length) {
-      return widget.segments[segmentIndex];
+    final totalWeight = widget.segments.fold<double>(
+      0.0,
+      (sum, segment) => sum + segment.probability,
+    );
+
+    if (totalWeight <= 0) {
+      return widget.segments.first;
     }
-    return widget.segments.first;
+
+    double currentAngle = 0.0;
+    for (final segment in widget.segments) {
+      final segmentAngle = (segment.probability / totalWeight) * 2 * pi;
+      if (adjustedAngle >= currentAngle &&
+          adjustedAngle < currentAngle + segmentAngle) {
+        return segment;
+      }
+      currentAngle += segmentAngle;
+    }
+    return widget.segments.last;
   }
 
   void _initializeWheelState() {
@@ -448,13 +463,25 @@ class _WheelWidgetContentState extends State<_WheelWidgetContent>
     }
   }
 
+  WheelSegment _pickWeightedRandomSegment(List<WheelSegment> segments) {
+    final totalWeight =
+        segments.fold<double>(0.0, (sum, s) => sum + s.probability);
+    final rand = Random().nextDouble() * totalWeight;
+    double cumulative = 0.0;
+    for (final segment in segments) {
+      cumulative += segment.probability;
+      if (rand < cumulative) {
+        return segment;
+      }
+    }
+    return segments.last;
+  }
+
   void _startSpinAnimation() {
     _wheelController.resetToInitialPosition();
 
-    // Select a random segment
-    final random = Random();
-    final randomSegment =
-        widget.segments[random.nextInt(widget.segments.length)];
+    // Ağırlıklı rastgele segment seçimi
+    final randomSegment = _pickWeightedRandomSegment(widget.segments);
 
     _wheelController.spinToSegment(
       selectedSegment: randomSegment,
